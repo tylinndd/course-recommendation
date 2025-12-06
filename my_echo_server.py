@@ -14,7 +14,7 @@ def main():
     # Default port number
     port = 8888
     
-    # Allow port to be specified as command-line argument
+    
     if len(sys.argv) > 1:
         try:
             port = int(sys.argv[1])
@@ -41,13 +41,13 @@ def main():
     
     try:
         while True:
-            # Accept a connection
+            
             client_socket, client_address = server_socket.accept()
             print(f"Connection established with {client_address[0]}:{client_address[1]}")
             
             try:
                 while True:
-                    # Receive data from client
+                    
                     data = client_socket.recv(1024).decode('utf-8')
                     
                     if not data:
@@ -57,13 +57,13 @@ def main():
                     
                     message = data.rstrip('\n\r')
                     
-                    # Reverse the string (including 'end' -> 'dne')
+                    
                     reversed_message = reverse_string(message)
                     
                     print(f"Received: {message}")
                     print(f"Sending: {reversed_message}")
                     
-                    # Send reversed string back to client
+                    
                     client_socket.send((reversed_message + '\n').encode('utf-8'))
             
             except ConnectionResetError:
